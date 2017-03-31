@@ -20,7 +20,7 @@ public class AudioListActivity extends FragmentActivity implements
         setContentView(R.layout.activity_audio_list);
         ListView listView = (ListView) findViewById(R.id.audioList);
         adapter = new SimpleCursorAdapter(this, R.layout.audio_info, null,
-                new String[] { MediaStore.Audio.Media.TITLE },
+                new String[] { MediaStore.Audio.Media.DURATION },
                 new int[] {
                         R.id.textView }, 0);
         listView.setAdapter(adapter);
@@ -31,7 +31,7 @@ public class AudioListActivity extends FragmentActivity implements
         return new CursorLoader(this,
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                 new String[] { MediaStore.Audio.Media._ID,
-                        MediaStore.Audio.Media.TITLE },
+                         },
                 null, null,
                 null);
     }
