@@ -26,7 +26,7 @@ public class AudioListActivity extends FragmentActivity {
 
     ArrayList<Audio> audioList;
 
-    private ArrayAdapter adapter;
+    private ArrayAdapter<Audio> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
