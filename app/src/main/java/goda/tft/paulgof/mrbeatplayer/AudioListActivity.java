@@ -26,8 +26,6 @@ public class AudioListActivity extends FragmentActivity {
 
     ArrayList<Audio> audioList;
 
-    private ArrayAdapter<Audio> adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -71,7 +69,7 @@ public class AudioListActivity extends FragmentActivity {
             while (cursor.moveToNext()) {
                 String data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                 String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
+                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.));
                 String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 
                 // Save to audioList
@@ -85,8 +83,7 @@ public class AudioListActivity extends FragmentActivity {
         if (audioList.size() > 0) {
 
             ListView listView = (ListView) findViewById(R.id.audioList);
-            adapter = new ArrayAdapter(this, R.layout.audio_info, audioList);
-            listView.setAdapter(adapter);
+
             //RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
             //RecyclerView_Adapter adapter = new RecyclerView_Adapter(audioList, getApplication());
             //recyclerView.setAdapter(adapter);
