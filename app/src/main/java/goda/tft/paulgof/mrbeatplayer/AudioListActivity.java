@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.PersistableBundle;
@@ -16,9 +17,11 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AudioListActivity extends FragmentActivity {
@@ -69,7 +72,7 @@ public class AudioListActivity extends FragmentActivity {
             while (cursor.moveToNext()) {
                 String data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                 String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
+                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
                 String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 
                 // Save to audioList
@@ -82,11 +85,24 @@ public class AudioListActivity extends FragmentActivity {
     private void initAudioList() {
         if (audioList.size() > 0) {
 
-            AudioAdapter audioAdapter = new AudioAdapter(this, audioList);
-
-            ListView listView = (ListView) findViewById(R.id.audioList);
-
+            final AudioAdapter audioAdapter = new AudioAdapter(this, audioList);
+            final ListView listView = (ListView) findViewById(R.id.audioList);
             listView.setAdapter(audioAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    MediaPlayer mp = new MediaPlayer();
+                    //mp.setAudioSessionId(audioList.get(position).getId());
+                    try{
+                        mp.setDataSource(audioList.get(position).getData());
+                        mp.prepare();
+                        mp.start();
+                    } catch (IOException e){
+
+                    }
+                }
+            });
 
             //RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
             //RecyclerView_Adapter adapter = new RecyclerView_Adapter(audioList, getApplication());

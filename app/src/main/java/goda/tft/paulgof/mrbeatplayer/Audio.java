@@ -6,13 +6,13 @@ public class Audio implements Serializable {
 
     private String data;
     private String title;
-    private String album;
+    private String id;
     private String artist;
 
     public Audio(String data, String title, String album, String artist) {
         this.data = data;
         this.title = title;
-        this.album = album;
+        this.id = album;
         this.artist = artist;
     }
 
@@ -32,12 +32,12 @@ public class Audio implements Serializable {
         this.title = title;
     }
 
-    public String getAlbum() {
-        return album;
+    public String getId() {
+        return id;
     }
 
-    public void setAlbum(String album) {
-        this.album = album;
+    public void setAId(String album) {
+        this.id = album;
     }
 
     public String getArtist() {

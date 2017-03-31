@@ -15,8 +15,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/Audio.java" afterPath="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/Audio.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioListActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/audio_info.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/audio_info.xml" />
     </list>
@@ -81,24 +80,26 @@
       <file leaf-file-name="Audio.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/Audio.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+            <state relative-caret-position="459">
+              <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AudioListActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AudioListActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6">
-              <caret line="71" column="98" selection-start-line="71" selection-start-column="98" selection-end-line="71" selection-end-column="98" />
+            <state relative-caret-position="300">
+              <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1085#1147#0" expanded="false" />
+                <element signature="e#1182#1244#0" expanded="false" />
                 <element signature="method#checkPermission#0;class#AudioListActivity#0" expanded="false" />
-                <element signature="e#3215#3292#0" expanded="false" />
-                <element signature="e#3816#3827#0" expanded="false" />
+                <element signature="e#3352#3925#0" expanded="true" />
+                <element signature="e#3924#3925#0" expanded="true" />
+                <element signature="e#3941#4018#0" expanded="false" />
+                <element signature="e#4542#4553#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -116,14 +117,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="audio_info.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="audio_info.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/audio_info.xml">
-          <provider editor-type-id="android-designer2">
+          <provider selected="true" editor-type-id="android-designer2">
             <state />
           </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1935,10 +1936,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_audio_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/Audio.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/audio_info.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/Audio.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioListActivity.java" />
       </list>
     </option>
   </component>
@@ -2475,10 +2476,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1085#1147#0" expanded="false" />
+            <element signature="e#1182#1244#0" expanded="false" />
             <element signature="method#checkPermission#0;class#AudioListActivity#0" expanded="false" />
-            <element signature="e#3215#3292#0" expanded="false" />
-            <element signature="e#3816#3827#0" expanded="false" />
+            <element signature="e#3352#3925#0" expanded="true" />
+            <element signature="e#3924#3925#0" expanded="true" />
+            <element signature="e#3941#4018#0" expanded="false" />
+            <element signature="e#4542#4553#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2537,10 +2540,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1085#1147#0" expanded="false" />
+            <element signature="e#1182#1244#0" expanded="false" />
             <element signature="method#checkPermission#0;class#AudioListActivity#0" expanded="false" />
-            <element signature="e#3215#3292#0" expanded="false" />
-            <element signature="e#3816#3827#0" expanded="false" />
+            <element signature="e#3352#3925#0" expanded="true" />
+            <element signature="e#3924#3925#0" expanded="true" />
+            <element signature="e#3941#4018#0" expanded="false" />
+            <element signature="e#4542#4553#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2595,10 +2600,12 @@
           <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1085#1147#0" expanded="false" />
+            <element signature="e#1182#1244#0" expanded="false" />
             <element signature="method#checkPermission#0;class#AudioListActivity#0" expanded="false" />
-            <element signature="e#3215#3292#0" expanded="false" />
-            <element signature="e#3816#3827#0" expanded="false" />
+            <element signature="e#3352#3925#0" expanded="true" />
+            <element signature="e#3924#3925#0" expanded="true" />
+            <element signature="e#3941#4018#0" expanded="false" />
+            <element signature="e#4542#4553#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2650,6 +2657,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/audio_info.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
@@ -2662,34 +2680,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/Audio.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+        <state relative-caret-position="459">
+          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/goda/tft/paulgof/mrbeatplayer/AudioListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="71" column="98" selection-start-line="71" selection-start-column="98" selection-end-line="71" selection-end-column="98" />
+        <state relative-caret-position="300">
+          <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1085#1147#0" expanded="false" />
+            <element signature="e#1182#1244#0" expanded="false" />
             <element signature="method#checkPermission#0;class#AudioListActivity#0" expanded="false" />
-            <element signature="e#3215#3292#0" expanded="false" />
-            <element signature="e#3816#3827#0" expanded="false" />
+            <element signature="e#3352#3925#0" expanded="true" />
+            <element signature="e#3924#3925#0" expanded="true" />
+            <element signature="e#3941#4018#0" expanded="false" />
+            <element signature="e#4542#4553#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/audio_info.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
