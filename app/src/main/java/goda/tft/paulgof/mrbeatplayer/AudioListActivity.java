@@ -69,7 +69,7 @@ public class AudioListActivity extends FragmentActivity {
             while (cursor.moveToNext()) {
                 String data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                 String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.));
+                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
                 String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 
                 // Save to audioList
@@ -82,7 +82,11 @@ public class AudioListActivity extends FragmentActivity {
     private void initAudioList() {
         if (audioList.size() > 0) {
 
+            AudioAdapter audioAdapter = new AudioAdapter(this, audioList);
+
             ListView listView = (ListView) findViewById(R.id.audioList);
+
+            listView.setAdapter(audioAdapter);
 
             //RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
             //RecyclerView_Adapter adapter = new RecyclerView_Adapter(audioList, getApplication());
