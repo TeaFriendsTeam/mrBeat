@@ -9,10 +9,10 @@ public class Audio implements Serializable {
     private String id;
     private String artist;
 
-    public Audio(String data, String title, String album, String artist) {
+    public Audio(String data, String title, String id, String artist) {
         this.data = data;
         this.title = title;
-        this.id = album;
+        this.id = id;
         this.artist = artist;
     }
 
@@ -36,8 +36,8 @@ public class Audio implements Serializable {
         return id;
     }
 
-    public void setAId(String album) {
-        this.id = album;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getArtist() {

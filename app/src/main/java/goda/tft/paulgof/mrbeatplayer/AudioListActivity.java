@@ -28,6 +28,9 @@ public class AudioListActivity extends FragmentActivity {
 
 
     ArrayList<Audio> audioList;
+    AudioPlayer audioPlayer = new AudioPlayer();
+
+    MediaPlayer mp = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +95,8 @@ public class AudioListActivity extends FragmentActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    MediaPlayer mp = new MediaPlayer();
                     //mp.setAudioSessionId(audioList.get(position).getId());
-                    try{
-                        mp.setDataSource(audioList.get(position).getData());
-                        mp.prepare();
-                        mp.start();
-                    } catch (IOException e){
-
-                    }
+                    audioPlayer.playAudio(audioList, position);
                 }
             });
 
