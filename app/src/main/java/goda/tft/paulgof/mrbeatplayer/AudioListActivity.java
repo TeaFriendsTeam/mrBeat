@@ -16,22 +16,26 @@ import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AudioListActivity extends FragmentActivity {
+public class AudioListActivity extends AppCompatActivity {
 
 
     ArrayList<Audio> audioList;
     AudioPlayer audioPlayer = new AudioPlayer();
 
-    MediaPlayer mp = new MediaPlayer();
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,13 +48,9 @@ public class AudioListActivity extends FragmentActivity {
 
         initAudioList();
 
-        //ListView listView = (ListView) findViewById(R.id.audioList);
-        //adapter = new SimpleCursorAdapter(this, R.layout.audio_info, null,
-        //        new String[] { MediaStore.Audio.Media.TITLE },
-        //        new int[] {
-        //                R.id.textView }, 0);
-        //listView.setAdapter(adapter);
-        //getSupportLoaderManager().initLoader(0, null, this);
+
+
+
     }
 
     private void checkPermission() {
@@ -99,38 +99,29 @@ public class AudioListActivity extends FragmentActivity {
                     audioPlayer.playAudio(audioList, position);
                 }
             });
-
-            //RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-            //RecyclerView_Adapter adapter = new RecyclerView_Adapter(audioList, getApplication());
-            //recyclerView.setAdapter(adapter);
-            //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            //recyclerView.addOnItemTouchListener(new CustomTouchListener(this, new onItemClickListener() {
-            //    @Override
-            //    public void onClick(View view, int index) {
-            //        playAudio(index);
-            //    }
-            //}));
-
         }
     }
 
-    //@Override
-    //public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    //    return new CursorLoader(this,
-    //            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-    //            new String[] { MediaStore.Audio.Media._ID,
-    //                    MediaStore.Audio.Media.TITLE },
-    //            null, null,
-    //            null);
-    //}
-    //@Override
-    //public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-    //    adapter.swapCursor(data);
-    //}
-    //@Override
-    //public void onLoaderReset(Loader<Cursor> loader) {
-    //    adapter.swapCursor(null);
-    //}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menuTitle:
+                //TODO
+                Toast toast = Toast.makeText(getApplicationContext(), "Rand", Toast.LENGTH_SHORT);
+                toast.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 
 }

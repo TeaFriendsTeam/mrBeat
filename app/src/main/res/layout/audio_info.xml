@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AudioListActivity">
 
 
 
@@ -17,7 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:singleLine="true"
-            android:textSize="25sp" />
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/artistText"
@@ -25,7 +27,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:singleLine="true"
-            android:textSize="13sp" />
+            android:textSize="13dp" />
     </LinearLayout>
 
 
