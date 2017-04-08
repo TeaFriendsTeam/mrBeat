@@ -38,10 +38,7 @@ public class AudioListActivity extends AppCompatActivity {
         loadAudio();
 
         initAudioList();
-<<<<<<< HEAD
-=======
-        
->>>>>>> RandMake
+
     }
 
     private void checkPermission() {
@@ -116,13 +113,7 @@ public class AudioListActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menuTitle:
-<<<<<<< HEAD
-                //TODO randomize AudioList
-                Toast toast = Toast.makeText(getApplicationContext(), "Rand", Toast.LENGTH_SHORT);
-                toast.show();
-                return true;
-=======
-                if (isRandomed == false) {
+                if (!isRandomed) {
                     audioList = RandomAudio(audioList);
                     initAudioList();
                     Toast toast = Toast.makeText(getApplicationContext(), "Rand on", Toast.LENGTH_SHORT);
@@ -136,7 +127,6 @@ public class AudioListActivity extends AppCompatActivity {
                     toast.show();
                     isRandomed = false;
                 }
->>>>>>> RandMake
             default:
                 return super.onOptionsItemSelected(item);
         }
