@@ -4,37 +4,27 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
-import android.os.PersistableBundle;
 import android.provider.MediaStore;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class AudioListActivity extends AppCompatActivity {
 
 
     ArrayList<Audio> audioList;
     AudioPlayer audioPlayer = new AudioPlayer();
+    private boolean isRandomed = false;
 
     
     @Override
@@ -48,10 +38,7 @@ public class AudioListActivity extends AppCompatActivity {
         loadAudio();
 
         initAudioList();
-
-
-
-
+        
     }
 
     private void checkPermission() {
@@ -112,9 +99,9 @@ public class AudioListActivity extends AppCompatActivity {
 
     public ArrayList<Audio> RandomAudio (ArrayList<Audio> randomAudio){
         ArrayList<Audio> bufList = new ArrayList<>();
-        int[] randomArray = new int[randomAudio.size()];
-        UnicalRandom rand = new UnicalRandom();
-        randomArray = rand.unical(randomAudio.size());
+        int[] randomArray;
+        UniRandom rand = new UniRandom();
+        randomArray = rand.unirand(randomAudio.size());
         for(int x : randomArray) {
             bufList.add(randomAudio.get(x));
         }
@@ -126,10 +113,20 @@ public class AudioListActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menuTitle:
-                RandomAudio(audioList);
-                Toast toast = Toast.makeText(getApplicationContext(), "Rand", Toast.LENGTH_SHORT);
-                toast.show();
-                return true;
+                if (isRandomed == false) {
+                    audioList = RandomAudio(audioList);
+                    initAudioList();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Rand on", Toast.LENGTH_SHORT);
+                    toast.show();
+                    isRandomed = true;
+                    return true;
+                } else {
+                    loadAudio();
+                    initAudioList();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Rand off", Toast.LENGTH_SHORT);
+                    toast.show();
+                    isRandomed = false;
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
