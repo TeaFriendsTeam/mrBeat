@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@android:style/Theme.Material.Light"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="1dp"
+    android:theme="@android:style/Theme.Material.Light"
     tools:context=".AudioListActivity">
 
         <ListView
+            android:id="@+id/audioList"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/audioList">
-        </ListView>
+            android:layout_height="wrap_content"></ListView>
 
 
 </RelativeLayout>
