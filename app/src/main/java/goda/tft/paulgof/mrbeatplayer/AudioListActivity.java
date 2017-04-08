@@ -34,32 +34,10 @@ public class AudioListActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_list);
-<<<<<<< HEAD
-        ListView listView = (ListView) findViewById(R.id.audioList);
-        adapter = new SimpleCursorAdapter(this, R.layout.audio_info, null,
-                new String[] { MediaStore.Audio.Media.DURATION },
-                new int[] {
-                        R.id.textView }, 0);
-        listView.setAdapter(adapter);
-        getSupportLoaderManager().initLoader(0, null, this);
-    }
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this,
-                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                new String[] { MediaStore.Audio.Media._ID,
-                         },
-                null, null,
-                null);
-=======
 
         loadAudio();
 
         initAudioList();
-
-
-
-
     }
 
     private void checkPermission() {
@@ -92,7 +70,6 @@ public class AudioListActivity extends AppCompatActivity {
             }
         }
         cursor.close();
->>>>>>> 2f5a0384647e7990faddbbb0b0f341edfb50e48b
     }
 
     private void initAudioList() {
