@@ -6,6 +6,6 @@
         android:id="@+id/menuTitle"
         android:icon="@drawable/ic_rand"
         android:title="@string/rand"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
+
 </menu>

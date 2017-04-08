@@ -9,14 +9,29 @@ import java.util.ArrayList;
 public class AudioPlayer {
     MediaPlayer mp;
 
-    public void playAudio(ArrayList<Audio> audioArrayList, int position)
-    {
+    public void playAudio(final ArrayList<Audio> audioArrayList, final int position) {
         releaseMP();
         try {
             mp = new MediaPlayer();
             mp.setDataSource(audioArrayList.get(position).getData());
             mp.prepare();
             mp.start();
+        } catch (IOException e) {}
+    }
+
+    public void AudioRepeat (final ArrayList<Audio> audioArrayList, final int position){
+        releaseMP();
+        try {
+            mp = new MediaPlayer();
+            mp.setDataSource(audioArrayList.get(position).getData());
+            mp.prepare();
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    mp.start();
+                }
+            });
         } catch (IOException e) {}
     }
 
