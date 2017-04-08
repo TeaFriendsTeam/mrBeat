@@ -95,6 +95,7 @@ public class AudioListActivity extends FragmentActivity {
                     MediaPlayer mp = new MediaPlayer();
                     //mp.setAudioSessionId(audioList.get(position).getId());
                     try{
+
                         mp.setDataSource(audioList.get(position).getData());
                         mp.prepare();
                         mp.start();
