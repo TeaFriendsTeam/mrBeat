@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AudioListActivity extends AppCompatActivity {
 
@@ -109,12 +110,23 @@ public class AudioListActivity extends AppCompatActivity {
         return true;
     }
 
+    public ArrayList<Audio> RandomAudio (ArrayList<Audio> randomAudio){
+        ArrayList<Audio> bufList = new ArrayList<>();
+        int[] randomArray = new int[randomAudio.size()];
+        UnicalRandom rand = new UnicalRandom();
+        randomArray = rand.unical(randomAudio.size());
+        for(int x : randomArray) {
+            bufList.add(randomAudio.get(x));
+        }
+        return bufList;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menuTitle:
-                //TODO
+                RandomAudio(audioList);
                 Toast toast = Toast.makeText(getApplicationContext(), "Rand", Toast.LENGTH_SHORT);
                 toast.show();
                 return true;
