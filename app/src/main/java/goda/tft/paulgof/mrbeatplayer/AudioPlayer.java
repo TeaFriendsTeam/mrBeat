@@ -47,6 +47,7 @@ public class AudioPlayer {
                 public void onCompletion(MediaPlayer mediaPlayer) {
                     int x = position;
                     x++;
+                    if (x == audioArrayList.size()) x = 0;
                     allAudioPlay(audioArrayList, x);
                 }
             });
