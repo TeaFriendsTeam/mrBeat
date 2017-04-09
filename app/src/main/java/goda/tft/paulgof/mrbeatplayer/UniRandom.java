@@ -1,5 +1,7 @@
 package goda.tft.paulgof.mrbeatplayer;
 
+import java.util.Random;
+
 public class UniRandom {
     public int[] unirand (int diapazon){
         Rand ran = new Rand();
@@ -15,5 +17,12 @@ public class UniRandom {
             }
         }
         return randArray;
+    }
+}
+
+class Rand {
+    public static int randach(int maxVal) {
+        Random rand = new Random();
+        return rand.nextInt(maxVal) ;
     }
 }
