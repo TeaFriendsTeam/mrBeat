@@ -113,7 +113,7 @@ public class AudioListActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menuTitle:
-                if (isRandomed == false) {
+                if (!isRandomed) {
                     audioList = RandomAudio(audioList);
                     initAudioList();
                     Toast toast = Toast.makeText(getApplicationContext(), "Rand on", Toast.LENGTH_SHORT);
