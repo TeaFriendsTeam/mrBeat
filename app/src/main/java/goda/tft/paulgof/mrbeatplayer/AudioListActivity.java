@@ -87,7 +87,18 @@ public class AudioListActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //mp.setAudioSessionId(audioList.get(position).getId());
+<<<<<<< HEAD
                     audioPlayer.playAudio(audioList, position);
+=======
+                    try{
+
+                        mp.setDataSource(audioList.get(position).getData());
+                        mp.prepare();
+                        mp.start();
+                    } catch (IOException e){
+
+                    }
+>>>>>>> AudioList
                 }
             });
         }
