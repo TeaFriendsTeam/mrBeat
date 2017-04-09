@@ -24,7 +24,7 @@ public class AudioListActivity extends AppCompatActivity {
 
     ArrayList<Audio> audioList;
     AudioPlayer audioPlayer = new AudioPlayer();
-    private boolean isRandomed = false;
+    private boolean isRandomised = false;
 
 
     @Override
@@ -49,7 +49,7 @@ public class AudioListActivity extends AppCompatActivity {
         }
     }
 
-    private void loadAudio() {
+    private void loadAudio() { //search and add all mp3 audio on device
         ContentResolver contentResolver = getContentResolver();
 
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
@@ -102,7 +102,7 @@ public class AudioListActivity extends AppCompatActivity {
         ArrayList<Audio> bufList = new ArrayList<>();
         int[] randomArray;
         UniRandom rand = new UniRandom();
-        randomArray = rand.unirand(randomAudio.size());
+        randomArray = rand.uniRand(randomAudio.size());
         for(int x : randomArray) {
             bufList.add(randomAudio.get(x));
         }
@@ -114,19 +114,19 @@ public class AudioListActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menuTitle:
-                if (!isRandomed) {
+                if (!isRandomised) {
                     audioList = RandomAudio(audioList);
                     initAudioList();
                     Toast toast = Toast.makeText(getApplicationContext(), "Rand on", Toast.LENGTH_SHORT);
                     toast.show();
-                    isRandomed = true;
+                    isRandomised = true;
                     return true;
                 } else {
                     loadAudio();
                     initAudioList();
                     Toast toast = Toast.makeText(getApplicationContext(), "Rand off", Toast.LENGTH_SHORT);
                     toast.show();
-                    isRandomed = false;
+                    isRandomised = false;
                 }
             default:
                 return super.onOptionsItemSelected(item);
