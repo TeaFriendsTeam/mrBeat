@@ -38,7 +38,10 @@ public class AudioListActivity extends AppCompatActivity {
         loadAudio();
 
         initAudioList();
+<<<<<<< HEAD
 
+=======
+>>>>>>> AudioRepeat
     }
 
     private void checkPermission() {
@@ -89,6 +92,7 @@ public class AudioListActivity extends AppCompatActivity {
             });
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
