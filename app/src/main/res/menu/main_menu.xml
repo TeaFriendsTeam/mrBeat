@@ -3,9 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menuTitle"
+        android:id="@+id/randItem"
         android:icon="@drawable/ic_rand"
         android:title="@string/rand"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/registration"
+        android:title="@string/registration" />
+
+    <item
+        android:id="@+id/connecting"
+        android:title="@string/connecting" />
 
 </menu>
