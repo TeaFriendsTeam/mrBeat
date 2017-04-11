@@ -42,7 +42,7 @@ public class AudioListActivity extends AppCompatActivity {
 
     public static final String TAG = "MrBeatPlayer";
 
-    AudioConnection audioConnection;
+    AudioStream audioStream;
 
 
     @Override
@@ -65,7 +65,7 @@ public class AudioListActivity extends AppCompatActivity {
 
         initAudioList();
 
-        audioConnection = new AudioConnection(updateHandler);
+        audioStream = new AudioStream(updateHandler);
 
         nsdHelper = new NsdHelper(this);
         nsdHelper.initializeNsd();
@@ -117,11 +117,11 @@ public class AudioListActivity extends AppCompatActivity {
 
                     if (isRegistration) {
 
-                        String path = audioList.get(position).getData();
+                        String path = audioList.get(position).getTitle();
                         Toast toast = Toast.makeText(getApplicationContext(), path, Toast.LENGTH_SHORT);
                         toast.show();
                         if (!path.isEmpty()) {
-                            audioConnection.sendMessage(path);
+                            audioStream.sendMessage(path);
                         }
 
                     } else {
@@ -161,8 +161,8 @@ public class AudioListActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.registration:
-                if(audioConnection.getLocalPort() > -1) {
-                    nsdHelper.registerService(audioConnection.getLocalPort());
+                if(audioStream.getLocalPort() > -1) {
+                    nsdHelper.registerService(audioStream.getLocalPort());
                     isRegistration = true;
                 } else {
                     Log.d(TAG, "ServerSocket isn't bound.");
@@ -172,7 +172,7 @@ public class AudioListActivity extends AppCompatActivity {
                 NsdServiceInfo service = nsdHelper.getChosenServiceInfo();
                 if (service != null) {
                     Log.d(TAG, "Connecting.");
-                    audioConnection.connectToServer(service.getHost(),
+                    audioStream.connectToServer(service.getHost(),
                             service.getPort());
                 } else {
                     Log.d(TAG, "No service to connect to!");
@@ -199,6 +199,11 @@ public class AudioListActivity extends AppCompatActivity {
     public void addChatLine(String line) { //
         Toast toast = Toast.makeText(getApplicationContext(), line, Toast.LENGTH_SHORT);
         toast.show();
+        for(int x = 0, n = audioList.size(); x < n; x++) {
+            if(audioList.get(x).getTitle().equals(line)) {
+                audioPlayer.playAudio(audioList, x);
+            }
+        }
     }
 
     @Override
@@ -220,7 +225,7 @@ public class AudioListActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         nsdHelper.tearDown();
-        audioConnection.tearDown();
+        //audioConnection.tearDown();
         super.onDestroy();
     }
 
