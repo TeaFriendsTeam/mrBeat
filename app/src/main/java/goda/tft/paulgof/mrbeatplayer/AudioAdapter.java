@@ -26,10 +26,10 @@ public class AudioAdapter extends ArrayAdapter<Audio> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.audio_info, parent, false);
         }
-
+        // set id
         TextView Title = (TextView) convertView.findViewById(R.id.titleText);
         TextView  Artist= (TextView) convertView.findViewById(R.id.artistText);
-
+        //set title and artist
         Title.setText(audio.getTitle());
         Artist.setText(audio.getArtist());
 

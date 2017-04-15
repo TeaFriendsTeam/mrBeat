@@ -2,6 +2,7 @@ package goda.tft.paulgof.mrbeatplayer;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.MediaPlayer;
@@ -37,6 +38,7 @@ public class AudioListActivity extends AppCompatActivity {
     private boolean isRandomised = false;
     boolean isRegistration = false;
 
+
     NsdHelper nsdHelper;
     Handler updateHandler;
 
@@ -47,6 +49,8 @@ public class AudioListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // start
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         checkPermission();
 

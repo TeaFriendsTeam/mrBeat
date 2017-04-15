@@ -2,6 +2,11 @@ package goda.tft.paulgof.mrbeatplayer;
 
 import java.util.Random;
 
+/**
+ * UniRandom нужен для присваивания элементам списка
+ * рандомной уникальной позиции. "Смешивает список".
+ */
+
 public class UniRandom {
     public int[] uniRand(int diapason){
         Rand ran = new Rand();
