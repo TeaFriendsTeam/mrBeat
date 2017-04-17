@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/randItem"
-        android:icon="@drawable/ic_rand"
+        android:icon="@drawable/randoff"
         android:title="@string/rand"
         app:showAsAction="ifRoom" />
 

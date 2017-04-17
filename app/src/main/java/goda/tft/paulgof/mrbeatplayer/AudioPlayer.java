@@ -10,10 +10,13 @@ import java.util.ArrayList;
 public class AudioPlayer {
 
     MediaPlayer mp;
+    ArrayList<Audio> audioArrayList;
+
     private int positionFlag = -1;
     private boolean pauseFlag = false;
 
     public void playAudio(final ArrayList<Audio> audioArrayList, final int position) {
+        this.audioArrayList = audioArrayList;
         if(position == positionFlag) {
             pauseTool();
         } else {
@@ -64,6 +67,41 @@ public class AudioPlayer {
         this.positionFlag = positionFlag;
     }
 
+    public int getPosn(){
+        return mp.getCurrentPosition();
+    }
+
+    public int getDur(){
+        return mp.getDuration();
+    }
+
+    public boolean isPng(){
+        return mp.isPlaying();
+    }
+
+    public void pausePlayer(){
+        mp.pause();
+    }
+
+    public void seek(int posn){
+        mp.seekTo(posn);
+    }
+
+    public void go(){
+        mp.start();
+    }
+
+    public void playPrev(){
+        positionFlag--;
+        if(positionFlag < 0) positionFlag = audioArrayList.size()-1;
+        playAudio(audioArrayList, positionFlag);
+    }
+
+    public void playNext(){
+        positionFlag++;
+        if(positionFlag == audioArrayList.size()) positionFlag = 0;
+        playAudio(audioArrayList, positionFlag);
+    }
 
     private void releaseMP() {
         if (mp != null) {

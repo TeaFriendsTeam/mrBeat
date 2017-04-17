@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Build;
 import android.os.Message;
-import android.provider.MediaStore;
+import android.widget.MediaController.MediaPlayerControl;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,16 +28,17 @@ import android.os.Handler;
 
 import goda.tft.paulgof.nsd.*;
 
-public class AudioListActivity extends AppCompatActivity {
+public class AudioListActivity extends AppCompatActivity implements MediaPlayerControl {
 
 
     ArrayList<Audio> audioList;
+    AudioDistributor audioDistributor;
+    ContentResolver contentResolver;
     AudioPlayer audioPlayer = new AudioPlayer();
-    //MediaPlayer mp;
+    AudioController audioController;
 
     private boolean isRandomised = false;
     boolean isRegistration = false;
-
 
     NsdHelper nsdHelper;
     Handler updateHandler;
@@ -52,10 +53,11 @@ public class AudioListActivity extends AppCompatActivity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        checkPermission();
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_list);
+        checkPermission();
 
         updateHandler = new Handler() {
             @Override
@@ -65,9 +67,13 @@ public class AudioListActivity extends AppCompatActivity {
             }
         };
 
-        loadAudio();
+        contentResolver = getContentResolver();
+        audioDistributor = new AudioDistributor();
+        audioList = audioDistributor.loadAudio(contentResolver);
 
         initAudioList();
+
+        setController();
 
         audioStream = new AudioStream(updateHandler);
 
@@ -83,29 +89,6 @@ public class AudioListActivity extends AppCompatActivity {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
             }
         }
-    }
-
-    private void loadAudio() { // search and add all .mp3 audio on device
-        ContentResolver contentResolver = getContentResolver();
-
-        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
-        String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
-        Cursor cursor = contentResolver.query(uri, null, selection, null, sortOrder);
-
-        if (cursor != null && cursor.getCount() > 0) {
-            audioList = new ArrayList<>();
-            while (cursor.moveToNext()) {
-                String data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-                String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
-                String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-
-                // Save to audioList
-                audioList.add(new Audio(data, title, album, artist));
-            }
-        }
-        cursor.close();
     }
 
     private void initAudioList() { // make audioAdapter and connection to audioList
@@ -130,6 +113,7 @@ public class AudioListActivity extends AppCompatActivity {
 
                     } else {
                         audioPlayer.playAudio(audioList, position);
+                        audioController.show(0);
                     }
 
                 }
@@ -150,15 +134,17 @@ public class AudioListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.randItem: // act when click on randItem
                 if (!isRandomised) { // check: Was List randomised?
-                    audioList = RandomAudio(audioList);
+                    audioList = new UniRandom().randomAudio(audioList);
                     initAudioList();
+                    item.setIcon(R.drawable.randon);
                     Toast toast = Toast.makeText(getApplicationContext(), "Rand on", Toast.LENGTH_SHORT);
                     toast.show();
                     isRandomised = true;
                     return true;
                 } else {
-                    loadAudio();
+                    audioList = audioDistributor.loadAudio(contentResolver);
                     initAudioList();
+                    item.setIcon(R.drawable.randoff);
                     Toast toast = Toast.makeText(getApplicationContext(), "Rand off", Toast.LENGTH_SHORT);
                     toast.show();
                     isRandomised = false;
@@ -188,18 +174,6 @@ public class AudioListActivity extends AppCompatActivity {
         return true;
     }
 
-    public ArrayList<Audio> RandomAudio (ArrayList<Audio> randomAudio) {
-        ArrayList<Audio> bufList = new ArrayList<>();
-        int[] randomArray;
-        UniRandom rand = new UniRandom();
-        randomArray = rand.uniRand(randomAudio.size());
-        for(int x : randomArray) {
-            bufList.add(randomAudio.get(x));
-        }
-        return bufList;
-    }
-
-
     public void addChatLine(String line) { //
         Toast toast = Toast.makeText(getApplicationContext(), line, Toast.LENGTH_SHORT);
         toast.show();
@@ -209,6 +183,8 @@ public class AudioListActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
     @Override
     protected void onPause() {
@@ -229,8 +205,99 @@ public class AudioListActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         nsdHelper.tearDown();
-        //audioConnection.tearDown();
+        audioStream.tearDown();
         super.onDestroy();
     }
 
+    private void setController(){
+        audioController = new AudioController(this);
+        audioController.setPrevNextListeners(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playNext();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playPrev();
+            }
+        });
+        audioController.setMediaPlayer(this);
+        audioController.setAnchorView(findViewById(R.id.audioList));
+        audioController.setEnabled(true);
+
+    }
+
+    @Override
+    public void start() {
+        audioPlayer.go();
+    }
+
+    @Override
+    public void pause() {
+        audioPlayer.pausePlayer();
+    }
+
+    @Override
+    public int getDuration() {
+        if(audioPlayer!=null && audioPlayer.isPng())
+        return audioPlayer.getDur();
+  else return 0;
+    }
+
+    @Override
+    public int getCurrentPosition() {
+        if(audioPlayer != null && audioPlayer.isPng())
+            return audioPlayer.getPosn();
+        else return 0;
+    }
+
+    @Override
+    public void seekTo(int pos) {
+        audioPlayer.seek(pos);
+    }
+
+    @Override
+    public boolean isPlaying() {
+        if(audioPlayer != null && audioPlayer.isPng())
+        return audioPlayer.isPng();
+        else return false;
+    }
+
+    @Override
+    public int getBufferPercentage() {
+        return 0;
+    }
+
+    @Override
+    public boolean canPause() {
+        return true;
+    }
+
+    @Override
+    public boolean canSeekBackward() {
+        return true;
+    }
+
+    @Override
+    public boolean canSeekForward() {
+        return true;
+    }
+
+    @Override
+    public int getAudioSessionId() {
+        return 0;
+    }
+
+    //play next
+    private void playNext(){
+        audioPlayer.playNext();
+        audioController.show(0);
+    }
+
+    //play previous
+    private void playPrev(){
+        audioPlayer.playPrev();
+        audioController.show(0);
+    }
 }
